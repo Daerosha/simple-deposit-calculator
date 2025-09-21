@@ -1,4 +1,4 @@
-package main.java.calculator;
+package main.java.ru.github.calculator;
 
 
 import java.io.BufferedReader;
