@@ -54,8 +54,8 @@ class UserDepositSumm {
     public int GetDepositSumm() throws IOException {
         System.out.print("Введите сумму депозита (от 1 до 100 000 000): ");
 //        GetUserInput s = new GetUserInput();
-//        int number = s.UserInput(1, 100000000); // преобразуем строку в число
-//       return number;
+//        int summa = s.UserInput(1, 100000000);
+//       return summa;
         return GetUserInput.UserInput(1,100000000);
 
     }
@@ -69,7 +69,8 @@ class UserDepositPercent {
     public int GetDepositPercent() throws IOException {
         System.out.print("Введите процент депозита (от 1 до 50): ");
 //        GetUserInput p = new GetUserInput();
-//        int percent = p.UserInput(1,50); //
+//        int percent = p.UserInput(1,50);
+//       return percent;
         return GetUserInput.UserInput(1,50);
 
     }
@@ -102,9 +103,16 @@ class UserDepositMonth {
             System.out.println("Вы планируете открыть депозит на срок менее 1 года, количество месяцев должно быть 1 или больше");
             System.out.print("Введите срок депозита в месяцах (от 1 до 11): ");
             month = GetUserInput.UserInput(1, 11);
+//        GetUserInput m = new GetUserInput();
+//        int month = m.UserInput(1,11);
+//        return month;
         }else {
             System.out.print("Введите срок депозита в месяцах (от 0 до 11): ");
             month = GetUserInput.UserInput(0,11);
+//        GetUserInput m = new GetUserInput();
+//        int month = m.UserInput(0,11);
+//        return month;
+
         }
         return month;
     }
@@ -114,7 +122,6 @@ class UserDepositMonth {
 
 class GetUserInput {
     public static int UserInput(int from, int to) throws IOException {
-        // преобразуем строку в число
         boolean asd = false;
         Integer inputus = null ;
         while (!asd){
