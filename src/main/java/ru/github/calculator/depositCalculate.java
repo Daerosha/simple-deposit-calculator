@@ -30,6 +30,7 @@ public class depositCalculate {
 
 class DepositCalculateProfite {
     public static void main(String[] args) throws IOException {
+        System.out.println("Добро пожаловать в простой депозитный калькулятор, он высчитывает, какую прибыль вы получите за определённый срок по определённому проценту,");
         depositCalculate calculate = new depositCalculate();
         calculate.startCalculate();
     }
@@ -55,21 +56,11 @@ class DepositCalculateProfite {
 
 class UserDepositSumm {
     public int GetDepositSumm() throws IOException {
-        // Оборачиваем System.in (InputStream) в InputStreamReader, а потом в BufferedReader
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.print("Введите сумму депозита (от 0 до 100 000 000): ");
-        boolean asd = false;
-        int number = 0;
-        while (!asd) {
-            String input = reader.readLine();  // читаем строку из консоли
-            number = Integer.parseInt(input); // преобразуем строку в число
-            if (number <= 0 || number >= 100000000) {
-                System.out.print("Вы ввели неверное число, оно должно быть от 0 до 100 000 000, повторите попытку:");
-            } else {
-                asd = true;}
-        }
+        GetUserInput s = new GetUserInput();
+        int  number = GetUserInput.UserInput(1,100000000); // преобразуем строку в число
         return number;
-    }
+//    }
 }
 
 
@@ -90,14 +81,12 @@ class UserDepositSumm {
 
 class UserDepositPercent {
     public int GetDepositPercent() throws IOException {
-        // Оборачиваем System.in (InputStream) в InputStreamReader, а потом в BufferedReader
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.print("Введите процент депозита (от 1 до 50): ");
         boolean asd = false;
+        GetUserInput p = new GetUserInput();
         int percent = 0;
         while (!asd) {
-            String input = reader.readLine();  // читаем строку из консоли
-            percent = Integer.parseInt(input); // преобразуем строку в число
+            percent = p.UserInput(1,15); //
             if (percent <= 0 || percent > 50) {
                 System.out.print("Вы ввели неверное число, оно должно быть от 1 до 50, повторите попытку:");
             } else {
@@ -117,18 +106,17 @@ class UserDepositPercent {
 class UserDepositYears {
     public int GetDepositYears() throws IOException {
         // Оборачиваем System.in (InputStream) в InputStreamReader, а потом в BufferedReader
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.print("Введите срок депозита в годах (от 0 до 15): ");
         boolean asd = false;
+        GetUserInput y = new GetUserInput();
         int years = 0;
-        while (!asd) {
-            String input = reader.readLine();  // читаем строку из консоли
-            years = Integer.parseInt(input); // преобразуем строку в число
-            if (years < 0 || years > 15) {
-                System.out.print("Вы ввели неверное число, оно должно быть от 0 до 15, повторите попытку:");
-            } else {
-                asd = true;}
-        }
+//        while (!asd) {
+            years = y.UserInput(-1,15);
+ //           if (years < 0 || years > 15) {
+//System.out.print("Вы ввели неверное число, оно должно быть от 0 до 15, повторите попытку:");
+//            } else {
+//                asd = true;}
+//}
         return years;
     }
 }
@@ -141,15 +129,13 @@ class UserDepositYears {
 
 class UserDepositMonth {
     public int GetDepositMonth(int y) throws IOException {
-        // Оборачиваем System.in (InputStream) в InputStreamReader, а потом в BufferedReader
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        GetUserInput m = new GetUserInput();
         boolean asd = false;
         int month = 0;
         if (y == 0) {
             System.out.print("Введите срок депозита в месяцах (от 1 до 11): ");
             while (!asd) {
-                String input = reader.readLine();  // читаем строку из консоли
-                month = Integer.parseInt(input); // преобразуем строку в число
+                month = m.UserInput();
                 if ( month == 0){
                     System.out.print("Общий срок депозита составляет 0 лет и 0 месяцев, повторите попытку:");
                 }
@@ -164,8 +150,7 @@ class UserDepositMonth {
 
             System.out.print("Введите срок депозита в месяцах (от 0 до 11): ");
             while (!asd) {
-                String input = reader.readLine();  // читаем строку из консоли
-                month = Integer.parseInt(input); // преобразуем строку в число
+                month = m.UserInput();
                 if (month < 0 || month > 11) {
                     System.out.print("Вы ввели неверное число, оно должно быть от 0 до 11, повторите попытку:");
                 } else {
@@ -173,8 +158,32 @@ class UserDepositMonth {
                 }
             }
         }
+
         return month;
     }
 }
 
 
+
+class GetUserInput {
+    public static int UserInput(int from, int to) throws IOException {
+        // преобразуем строку в число
+        boolean asd = false;
+        int inputus = 0;
+        while (!asd){
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            String input = reader.readLine();  // читаем строку из консоли
+            inputus = Integer.parseInt(input); // пробуем преобразовать
+        } catch (NumberFormatException e) {
+            System.out.print("Ошибка: необходимо ввести целое число! Повторный ввод:");
+        }
+            if (inputus <= from || inputus >= to) {
+                System.out.print("Вы ввели неверное число, оно должно быть от " + from + " до "+ to + ", повторите попытку:");
+            } else {
+                asd = true;}
+
+        }
+        return inputus;
+    }
+}
