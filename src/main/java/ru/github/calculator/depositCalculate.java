@@ -16,16 +16,18 @@ public class depositCalculate {
         UserDepositPercent p = new UserDepositPercent();
         int depositPercent = p.GetDepositPercent();
         long summStonks =(long) (depositSumm*depositPercent*(depositYears+ depositMonth/12.0));
-        long summTotal = summStonks + depositSumm*100;
+        long summTotal = summStonks + depositSumm* 100L;
         CalculateResult(summTotal,summStonks);
     }
     private void CalculateResult(long total, long stonks){
         DecimalFormatSymbols symbols = new DecimalFormatSymbols();
         symbols.setGroupingSeparator(' ');
-        DecimalFormat df = new DecimalFormat("#,###.00", symbols);
+        symbols.setDecimalSeparator('.');
+        DecimalFormat df = new DecimalFormat("#,##0.00", symbols);
         System.out.println("Сумма на счете в конце депозита составляет: " + df.format(total / 100.0));
         System.out.println("Из них прибыль по депозиту составляет: " + df.format(stonks / 100.0));
     }
+
 
 }
 
