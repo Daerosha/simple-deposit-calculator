@@ -1,6 +1,8 @@
 package ru.github.calculator;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 
 public class depositCalculate {
 
@@ -13,11 +15,18 @@ public class depositCalculate {
         int depositMonth = m.GetDepositMonth(depositYears);
         UserDepositPercent p = new UserDepositPercent();
         int depositPercent = p.GetDepositPercent();
-        int summStonks =(int) (depositSumm*depositPercent*(depositYears+ depositMonth/12.0));
-        int summTotal = summStonks + depositSumm*100;
-        System.out.println("Сумма на счете в конце депозита составляет : " + summTotal/100.00);
-        System.out.println("Из них прибыль по депозиту составляет : " + summStonks/100.00);
+        long summStonks =(long) (depositSumm*depositPercent*(depositYears+ depositMonth/12.0));
+        long summTotal = summStonks + depositSumm*100;
+        CalculateResult(summTotal,summStonks);
     }
+    private void CalculateResult(long total, long stonks){
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+        symbols.setGroupingSeparator(' ');
+        DecimalFormat df = new DecimalFormat("#,###.00", symbols);
+        System.out.println("Сумма на счете в конце депозита составляет: " + df.format(total / 100.0));
+        System.out.println("Из них прибыль по депозиту составляет: " + df.format(stonks / 100.0));
+    }
+
 }
 
 
