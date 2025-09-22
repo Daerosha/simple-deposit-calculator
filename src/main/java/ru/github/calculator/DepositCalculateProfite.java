@@ -1,6 +1,5 @@
 package ru.github.calculator;
 
-
 import java.io.IOException;
 
 class DepositCalculateProfite {

@@ -1,6 +1,5 @@
 package ru.github.calculator;
 
-
 import java.io.IOException;
 
 public class depositCalculate {
@@ -18,7 +17,6 @@ public class depositCalculate {
         int summTotal = summStonks + depositSumm*100;
         System.out.println("Сумма на счете в конце депозита составляет : " + summTotal/100.00);
         System.out.println("Из них прибыль по депозиту составляет : " + summStonks/100.00);
-
     }
 }
 
