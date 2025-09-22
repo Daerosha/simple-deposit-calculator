@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 
-public class depositCalculate {
+public class DepositCalculate {
 
     public void startCalculate() throws IOException {
         UserDepositSumm s = new UserDepositSumm();
