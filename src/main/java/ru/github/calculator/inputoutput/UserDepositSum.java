@@ -18,19 +18,18 @@ public class UserDepositSum implements UserDepositValue {
         DecimalFormatSymbols symbols = new DecimalFormatSymbols();
         symbols.setGroupingSeparator(' ');
         DecimalFormat df = new DecimalFormat("#,##0", symbols);
-        userDepositSumm.post("Введите сумму депозита (от " + df.format(MIN_SUMM) + " до " + df.format(MAX_SUMM) + "): ");
+        userDepositSumm.post("%nEnter the deposit amount (from " + df.format(MIN_SUMM) + " to " + df.format(MAX_SUMM) + "):");
         while (true) {
             try {
                 String input = userDepositSumm.getDataForCalculation();
                 int sum = Integer.parseInt(input);
                 if (sum < MIN_SUMM || sum > MAX_SUMM) {
-                    userDepositSumm.post("Вы ввели неверное число, оно должно быть от " + df.format(MIN_SUMM) + " до " + df.format(MAX_SUMM) + ", повторите попытку:");
+                    userDepositSumm.post("%nYou entered an incorrect number it should be between " + df.format(MIN_SUMM) + " and " + df.format(MAX_SUMM) + ", please try again:");
                 } else {
                     return sum;
                 }
             } catch (NumberFormatException | IOException e) {
-                userDepositSumm.post("Ошибка: вы ввели слишком большое, либо нецелое число при вводе процента! Повторный ввод:");
-
+                userDepositSumm.post("%nError: You entered a number that is too large or not an integer when entering the percentage! Re-enter:");
             }
         }
     }

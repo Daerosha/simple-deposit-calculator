@@ -12,9 +12,9 @@ import java.text.DecimalFormatSymbols;
 class DepositCalculatorProfite {
     private static final double KOPEYKA_TO_RUBLES = 100.0;
 
-    public void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
         UserInputAndOutput userIo = new UserInputAndOutput();
-        userIo.post("Добро пожаловать в простой депозитный калькулятор!%n");
+        userIo.post("%nWelcome to the simple deposit calculator!%n");
         UserDepositValue depositSum = new UserDepositSum(userIo);
         UserDepositValue depositTerm = new UserDepositTerm(userIo);
         UserDepositValue depositPercent = new UserDepositPercent(userIo);
@@ -29,10 +29,10 @@ class DepositCalculatorProfite {
             int percent = depositPercent.getDepositValue();
             try {
                 DepositCalculationResult calculationsResult = calculator.startCalculate(new DepositValueForCalculation(sum, term, percent));
-                userIo.post("Сумма на счете в конце депозита составляет: " + df.format(calculationsResult.total() / KOPEYKA_TO_RUBLES) + "%nИз них прибыль по депозиту составляет: " + df.format(calculationsResult.stonks() / KOPEYKA_TO_RUBLES));
+                userIo.post("%nThe balance at the end of the deposit is: " + df.format(calculationsResult.total() / KOPEYKA_TO_RUBLES) + "%nOf this amount, the profit on the deposit is: " + df.format(calculationsResult.stonks() / KOPEYKA_TO_RUBLES));
                 break;
             } catch (IllegalArgumentException e) {
-                userIo.post("Ошибка при подсчете, попробуйте ввести данные еще раз%n" + e.getMessage() + "%n");
+                userIo.post("%nError during calculation, please try entering the data again%n" + e.getMessage() + "%n");
             }
         }
     }

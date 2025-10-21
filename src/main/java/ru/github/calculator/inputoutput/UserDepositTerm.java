@@ -19,13 +19,13 @@ public class UserDepositTerm implements UserDepositValue {
 
     @Override
     public int getDepositValue() throws IOException {
-        userDepositTerm.post("Введите срок депозита в месяцах или годах (не менее " + MIN_TERM + " месяца и не более " + MAX_YEARS + " лет)%nГде 1m - будет означать один месяц, а 10y - десять лет, можно использовать только 1 значение):");
+        userDepositTerm.post("%nEnter in terms of months or years (no less than " + MIN_TERM + " month and no more than " + MAX_YEARS + " years)%nWhere 1m means one month and 10y means ten years, only 1 value can be used):");
         while (true) {
             String numberAndSuffixOfTime = userDepositTerm.getDataForCalculation().trim().toLowerCase();
             Pattern pattern = Pattern.compile("^(\\d+)([my])$");
             Matcher matcher = pattern.matcher(numberAndSuffixOfTime);
             if (!matcher.matches()) {
-                userDepositTerm.post("%nВы ввели некорректный срок депозита!%nВведите в месяцах или годах (не менее " + MIN_TERM + " месяца и не более " + MAX_YEARS + " лет)%nГде 1m - будет означать 1месяц, а 10y - десять лет, можно использовать только 1 значение):");
+                userDepositTerm.post("%nYou have entered an incorrect deposit term!%nEnter in terms of months or years (no less than " + MIN_TERM + " month and no more than " + MAX_YEARS + " years)%nWhere 1m means one month and 10y means ten years, only 1 value can be used):");
                 continue;
             }
             int numberOfTime = Integer.parseInt(matcher.group(1));
@@ -36,7 +36,7 @@ public class UserDepositTerm implements UserDepositValue {
             if (Objects.equals(suffixOfTime, "m") && numberOfTime >= MIN_TERM && numberOfTime <= MAX_MONTH) {
                 return numberOfTime;
             }
-            userDepositTerm.post("%nВы ввели некорректный срок депозита!%nВведите в месяцах или годах (не менее " + MIN_TERM + " месяца и не более " + MAX_YEARS + " лет)%nГде 1m - будет означать 1месяц, а 10y - десять лет, можно использовать только 1 значение):");
+            userDepositTerm.post("%nYou have entered an incorrect deposit term!%nEnter in terms of months or years (no less than " + MIN_TERM + " month and no more than " + MAX_YEARS + " years)%nWhere 1m means one month and 10y means ten years, only 1 value can be used):");
         }
     }
 }
