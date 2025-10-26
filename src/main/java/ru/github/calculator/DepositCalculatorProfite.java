@@ -31,7 +31,7 @@ class DepositCalculatorProfite {
                 DepositCalculationResult calculationsResult = calculator.startCalculate(new DepositValueForCalculation(sum, term, percent));
                 userIo.post("%nThe balance at the end of the deposit is: " + df.format(calculationsResult.total() / KOPEYKA_TO_RUBLES) + "%nOf this amount, the profit on the deposit is: " + df.format(calculationsResult.stonks() / KOPEYKA_TO_RUBLES));
                 break;
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException | ArithmeticException e) {
                 userIo.post("%nError during calculation, please try entering the data again%n" + e.getMessage() + "%n");
             }
         }
