@@ -12,8 +12,8 @@ public class UserDepositPercent implements UserDepositValue {
     }
 
     @Override
-    public int getDepositValue()  {
-        userDepositPercent.post("%nEnter the deposit percentage (between " + MIN_PERCENT + " and " + MAX_PERCENT + "):");
+    public int getDepositValue() {
+        userDepositPercent.post("%nEnter the integer deposit percentage (between " + MIN_PERCENT + " and " + MAX_PERCENT + "):");
         while (true) {
             try {
                 int percent = Integer.parseInt(userDepositPercent.getDataForCalculation());
