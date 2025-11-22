@@ -68,34 +68,47 @@ class DepositCalculatorTest {
     }
 
 
-    @Test
-    public void shouldThrowIllegalArgumentExceptionWhenValuesIsZero() {
-        int sum = 0;
-        int term = 0;
-        int percent = 0;
-        DepositValueForCalculation valueForCalculation = new DepositValueForCalculation(sum, term, percent);
-
-        assertThrows(IllegalArgumentException.class, () -> calculator.startCalculate(valueForCalculation));
-    }
-
-    @ParameterizedTest
-    @CsvSource({"-1,100,50", "100,-1,50", "100,100,-1"})
-    public void shouldThrowIllegalArgumentExceptionWhenValuesIsNegative(int sum, int term, int percent) {
-        DepositValueForCalculation valueForCalculation = new DepositValueForCalculation(sum, term, percent);
-
-        assertThrows(IllegalArgumentException.class, () -> calculator.startCalculate(valueForCalculation));
-    }
+        @ParameterizedTest
 
 
-    @ParameterizedTest
-    @CsvSource({"100,0,50", "100,20,0", "100,0,0"})
-    public void shouldThrowIllegalArgumentExceptionWhenTermOrPercentIsZero(int sum, int term, int percent) {
-        DepositValueForCalculation valueForCalculation = new DepositValueForCalculation(sum, term, percent);
+        @CsvSource({
 
-        DepositCalculationResult result = calculator.startCalculate(valueForCalculation);
 
-        assertEquals(result.total(), sum * KOPEYKI);
-        assertEquals(result.stonks(), 0);
-        assertTrue(result.total() > result.stonks());
-    }
+                "0, 12, 50",
+
+
+                "1000, 0, 50",
+
+
+                "1000, 12, 0",
+
+
+                "-1, 12, 50",
+
+
+                "1000, -1, 50",
+
+
+                "1000, 12, -1"
+
+
+        })
+
+
+        public void shouldThrowIllegalArgumentExceptionWhenValuesAreNotPositive(int sum, int term, int percent) {
+
+
+            DepositValueForCalculation valueForCalculation = new DepositValueForCalculation(sum, term, percent);
+
+
+    
+
+
+            assertThrows(IllegalArgumentException.class, () -> calculator.startCalculate(valueForCalculation));
+
+
+        }
+
+
+    
 }

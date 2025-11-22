@@ -1,0 +1,13 @@
+package ru.github.calculator.states;
+
+public enum State {
+    STARTING,
+    AWAITING_SUM,
+    AWAITING_TERM,
+    AWAITING_PERCENT,
+    CALCULATING,
+    DISPLAYING_RESULT,
+    AWAITING_HISTORY_CHOICE,
+    AWAITING_CONTINUE_CHOICE,
+    EXITING
+}

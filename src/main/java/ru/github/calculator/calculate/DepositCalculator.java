@@ -8,9 +8,12 @@ public class DepositCalculator {
     private static final long KOPEYKI = 100L;
 
     public DepositCalculationResult startCalculate(DepositValueForCalculation valueForCalculating) {
-            long summStonks = (long) (Math.multiplyExact(Math.multiplyExact((long)valueForCalculating.sum(), valueForCalculating.term()), (valueForCalculating.percent()))/ MONTH_IN_YEAR);
-            long summTotal = summStonks + valueForCalculating.sum() * KOPEYKI;
-            return new DepositCalculationResult(summTotal, summStonks);
+        if (valueForCalculating.sum() <= 0 || valueForCalculating.term() <= 0 || valueForCalculating.percent() <= 0) {
+            throw new IllegalArgumentException("Deposit sum, term, and percent must be positive.");
+        }
+        long summStonks = (long) (Math.multiplyExact(Math.multiplyExact((long) valueForCalculating.sum(), valueForCalculating.term()), (valueForCalculating.percent())) / MONTH_IN_YEAR);
+        long summTotal = summStonks + valueForCalculating.sum() * KOPEYKI;
+        return new DepositCalculationResult(summTotal, summStonks);
 
     }
 }
