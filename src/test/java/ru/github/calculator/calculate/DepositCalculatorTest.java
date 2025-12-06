@@ -14,14 +14,13 @@ class DepositCalculatorTest {
 
     @Test
     public void shouldCalculateCorrectlyWhenValuesAreSimple() {
-        //Arrange
         int sum = 1000;
         int term = 12;
         int percent = 50;
         DepositValueForCalculation valueForCalculation = new DepositValueForCalculation(sum, term, percent);
-        //Act
+
         DepositCalculationResult result = calculator.startCalculate(valueForCalculation);
-        //Assert
+
         assertEquals(1500 * KOPEYKI, result.total());
         assertEquals(500 * KOPEYKI, result.stonks());
         assertTrue(result.total() > result.stonks());
