@@ -8,10 +8,11 @@ public class DepositCalculator {
     private static final long KOPEYKI = 100L;
 
     public DepositCalculationResult startCalculate(DepositValueForCalculation valueForCalculating) {
-            long summStonks = (long) (Math.multiplyExact(Math.multiplyExact((long)valueForCalculating.sum(), valueForCalculating.term()), (valueForCalculating.percent()))/ MONTH_IN_YEAR);
-            long summTotal = summStonks + valueForCalculating.sum() * KOPEYKI;
-            return new DepositCalculationResult(summTotal, summStonks);
-
+        long summStonks =
+                (long) (Math.multiplyExact(Math.multiplyExact(valueForCalculating.sum(), valueForCalculating.term()),
+                        (valueForCalculating.percent())) / MONTH_IN_YEAR);
+        long summTotal = summStonks + valueForCalculating.sum() * KOPEYKI;
+        return new DepositCalculationResult(summTotal, summStonks);
     }
 }
 

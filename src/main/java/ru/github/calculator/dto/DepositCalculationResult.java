@@ -6,12 +6,12 @@ public record DepositCalculationResult(long total, long stonks) {
             throw new IllegalArgumentException("Сумма на счете в конце депозита не может быть отрицательной: " + total);
         }
         if (stonks < 0) {
-            throw new IllegalArgumentException("Прибыль на счете в конце депозита не может быть отрицательной: " + stonks);
+            throw new IllegalArgumentException(
+                    "Прибыль на счете в конце депозита не может быть отрицательной: " + stonks);
         }
         if (total <= stonks) {
             throw new IllegalArgumentException(
-                    "Сумма на счете в конце депозита(" + total + ") должна быть больше прибыли (" + stonks + ")"
-            );
+                    "Сумма на счете в конце депозита(" + total + ") должна быть больше прибыли (" + stonks + ")");
         }
     }
 }
